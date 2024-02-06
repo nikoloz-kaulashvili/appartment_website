@@ -16,8 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->string('image_path');
             $table->timestamps();
-
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('images');
     }
 };

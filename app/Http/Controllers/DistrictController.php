@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\District;
 use Illuminate\Http\Request;
 
@@ -12,22 +13,24 @@ class DistrictController extends Controller
     public function index()
     {
         $districts = District::all();
-        return view('districts.index', compact('districts'));
+        $cities = City::all();
+        return view('admin.components.districts', compact('districts','cities'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name_ka' => 'required|string|max:255',
+            'name_ge' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
             'city_id' => 'required|exists:cities,id',
         ]);
 
-        District::create([
-            'name_ka' => $request->input('name_ka'),
-            'name_en' => $request->input('name_en'),
-            'city_id' => $request->input('city_id'),
-        ]);
+        $district = new District();
+        $district->name_ge = $request->name_ge;
+        $district->name_en = $request->name_en;
+        $district->city_id = 1;
+        $district->save();
+
 
         return redirect()->route('districts.index')->with('success', 'District created successfully.');
     }
@@ -35,17 +38,16 @@ class DistrictController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_ka' => 'required|string|max:255',
+            'name_ge' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
             'city_id' => 'required|exists:cities,id',
         ]);
 
         $district = District::findOrFail($id);
-        $district->update([
-            'name_ka' => $request->input('name_ka'),
-            'name_en' => $request->input('name_en'),
-            'city_id' => $request->input('city_id'),
-        ]);
+        $district->name_ge = $request->name_ge;
+        $district->name_en = $request->name_en;
+        $district->city_id = 1;
+        $district->update();
 
         return redirect()->route('districts.index')->with('success', 'District updated successfully.');
     }

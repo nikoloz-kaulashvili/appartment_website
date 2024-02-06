@@ -12,10 +12,9 @@ class CreateDistrictsTable extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ka');
+            $table->string('name_ge');
             $table->string('name_en');
             $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
         });
     }
