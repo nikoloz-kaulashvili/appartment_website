@@ -41,8 +41,8 @@
                             <th scope="row">{{ $appartment->property_type }}</th>
                             <th scope="row">{{ $appartment->bedroom }}</th>
                             <th scope="row">{{ $appartment->bathroom }}</th>
-                            <th scope="row">{{ $appartment->status }}</th>
-                            <th scope="row">{{ $appartment->priority }}</th>
+                            <th scope="row">{{ $appartment->status == 1 ? 'თავისუფალი' : 'დაკავებული' }}</th>
+                            <th scope="row">{{ $appartment->priority == 1 ? 'არარის პრიორიტეტული' : 'პრიორიტეტული' }}</th>
                             <th> <button class="btn btn-info" data-toggle="modal"
                                     data-target="#image_appartment_{{ $appartment->id }}">სურათები</button>
                             </th>
@@ -63,7 +63,7 @@
     @foreach ($appartments as $appartment)
         <div class="modal fade bd-example-modal-lg" id="edit_appartment_{{ $appartment->id }}" tabindex="-1"
             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">ობიექტის რედაქტირება</h5>
@@ -75,15 +75,205 @@
                         <form action="{{ route('appartments.update', $appartment->id) }}" method="post">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="appartment_name">ობიექტის სახელი (ქართულად)</label>
-                                <input type="text" class="mb-3 form-control" value="{{ $appartment->name_ge }}"
-                                    name="name_ge" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="appartment_name">ობიექტის სახელი (ინგლისურად)</label>
-                                <input type="text" class="mb-3 form-control" value="{{ $appartment->name_en }}"
-                                    name="name_en" required>
+                            <div class="row">
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">სახელი (ქართულად)</label>
+                                    <input type="text" value="{{$appartment->name_ge}}" class="form-control" name="name_ge" required>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">სახელი (ინგლისურად)</label>
+                                    <input type="text" value="{{$appartment->name_en}}" class="form-control" name="name_en" required>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">მისამართი (ქართულად)</label>
+                                    <input type="text" value="{{$appartment->address_ge}}" class="form-control" name="address_ge" required>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">მისამართი (ინგლისურად)</label>
+                                    <input type="text" value="{{$appartment->address_en}}" class="form-control" name="address_en" required>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">ქალაქი </label>
+                                    <select class="form-select" name="city_id" aria-label="Default select example">
+                                        <option value="" selected>არჩევა</option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->id }}">{{ $city->name_ge }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">უბანი</label>
+                                    <select class="form-select" name="district_id" aria-label="Default select example">
+                                        <option value="" selected>არჩევა</option>
+                                        @foreach ($districts as $district)
+                                            <option value="{{ $district->id }}">{{ $district->name_ge }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">აღწერა (ქართულად)</label>
+                                    <textarea class="form-control"  name="description_ge" cols="30" rows="10">{ !! $appartment->description_ge !! }</textarea>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">აღწერა (ინგლისურად)</label>
+                                    <textarea class="form-control" name="description_en" cols="30" rows="10">{ !! $appartment->description_en !! }</textarea>
+                                </div>
+    
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">ფასი </label>
+                                    <input type="number" class="form-control" value="{{$appartment->price}}" name="price" required>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">ფართი </label>
+                                    <input type="number" class="form-control" value="{{$appartment->space}}" step="0.1" name="space" required>
+                                </div>
+    
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">შეთანხმების ტიპი </label>
+                                    <select class="form-select" name="agreement_type" aria-label="Default select example"
+                                        required>
+                                        <option value="{{$appartment->agreement_type}}">{{$appartment->agreement_type}}</option>
+                                        <option value="იყიდება">იყიდება</option>
+                                        <option value="გირავდება">გირავდება</option>
+                                        <option value="ქირავდება">ქირავდება</option>
+                                        <option value="ქირავდება დღიურად">ქირავდება დღიურად</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">ობიექტის ტიპი </label>
+                                    <select class="form-select" name="property_type" aria-label="Default select example"
+                                        required>
+                                        <option value="{{$appartment->property_type}}">{{$appartment->property_type}}</option>
+                                        <option value="ბინა">ბინა</option>
+                                        <option value="სახლი ან აგარაკი">სახლი ან აგარაკი</option>
+                                        <option value="კომერციული ფართი">კომერციული ფართი</option>
+                                        <option value="მიწის ნაკვეთი">მიწის ნაკვეთი</option>
+                                        <option value="სასტუმრო">სასტუმრო</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">რემონტი </label>
+                                    <select class="form-select" name="repair" aria-label="Default select example">
+                                        <option value="{{$appartment->repair}}">{{$appartment->repair}}</option>
+                                        <option value="ახალ გარემონტებული">ახალ გარემონტებული</option>
+                                        <option value="ძველი გარემონტებული">ძველი გარემონტებული</option>
+                                        <option value="მიმდინარეობს რემონტი">მიმდინარეობს რემონტი</option>
+                                        <option value="სარემონტო">სარემონტო</option>
+                                        <option value="თეთრი კარკასი">თეთრი კარკასი</option>
+                                        <option value="შავი კარკასი">შავი კარკასი</option>
+                                        <option value="მწვანე კარკასი">მწვანე კარკასი</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">გათბობა </label>
+                                    <select class="form-select" name="heating" aria-label="Default select example">
+                                        <option value="{{$appartment->heating}}">{{$appartment->heating}}</option>
+                                        <option value="ცენტრალური გათბობა">ცენტრალური გათბობა</option>
+                                        <option value="გაზის გამათბობელი">გაზის გამათბობელი</option>
+                                        <option value="იატაკის გათბობა">იატაკის გათბობა</option>
+                                        <option value="დენის გამათბობელი">დენის გამათბობელი</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">საწყობი </label>
+                                    <select class="form-select" name="storage" aria-label="Default select example">
+                                        <option value="{{$appartment->storage}}">{{$appartment->storage}}</option>
+                                        <option value="სარდაფი">სარდაფი</option>
+                                        <option value="სხვენი">სხვენი</option>
+                                        <option value="საკუჭნაო">საკუჭნაო</option>
+                                        <option value="გარე სათავსო">გარე სათავსო</option>
+                                        <option value="საერთო სათავსო">საერთო სათავსო</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">პარკინგი </label>
+                                    <select class="form-select" name="parking" aria-label="Default select example">
+                                        <option value="{{$appartment->parking}}">{{$appartment->parking}}</option>
+                                        <option value="ავტოფარეხი">ავტოფარეხი</option>
+                                        <option value="პარკინგის ადგილი">პარკინგის ადგილი</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">რუკის ლინკი </label>
+                                    <input type="text" class="form-control" value="{{$appartment->map}}" name="map">
+                                </div>
+                                {{--  --}}
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">საძინებელი </label>
+                                    <input type="number" max="10" class="form-control" value="{{$appartment->bedroom}}" name="bedroom">
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">სააბაზანო </label>
+                                    <input type="number"  max="10" class="form-control" value="{{$appartment->bathroom}}" name="bathroom">
+                                </div>
+    
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">სტატუსი </label>
+                                    <select class="form-select" name="status" aria-label="Default select example">
+                                        <option value="{{$appartment->status}}">{{ $appartment->status == 1 ? 'თავისუფალი' : 'დაკავებული' }}</option>
+                                        <option value="1">თავისუფალი</option>
+                                        <option value="2">დაკავებული</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    <label for="appartment_name">პრიორიტეტი </label>
+                                    <select class="form-select" name="priority" aria-label="Default select example">
+                                        <option value="{{$appartment->priority}}">{{ $appartment->priority == 1 ? 'არარის პრიორიტეტული' : 'პრიორიტეტული' }}</option>
+                                        <option value="1">არარის პრიორიტეტული</option>
+                                        <option value="2">პრიორიტეტული</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 form-group col-md-6 col-12">
+                                    
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->balcony == 1 ? 'checked' : '' }} name="balcony">
+                                    <label class="form-check-label">აივანი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->porch == 1 ? 'checked' : '' }} name="porch">
+                                    <label class="form-check-label">ვერანდა</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->loggia == 1 ? 'checked' : '' }} name="loggia">
+                                    <label class="form-check-label">ლოჟი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->natural_gas == 1 ? 'checked' : '' }} name="natural_gas">
+                                    <label class="form-check-label">გაზი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->Internet == 1 ? 'checked' : '' }} name="Internet">
+                                    <label class="form-check-label">ინტერნეტი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->fireplace == 1 ? 'checked' : '' }} name="fireplace">
+                                    <label class="form-check-label">ბუხარი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->furniture == 1 ? 'checked' : '' }} name="furniture">
+                                    <label class="form-check-label">ავეჯი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->passenger_elevator == 1 ? 'checked' : '' }} name="passenger_elevator">
+                                    <label class="form-check-label">სამგზავრო ლიფთი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->freight_elevator == 1 ? 'checked' : '' }} name="freight_elevator">
+                                    <label class="form-check-label">სატვირთო ლიფტი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input"  value="1" type="checkbox" {{ $appartment->telephone == 1 ? 'checked' : '' }} name="telephone">
+                                    <label class="form-check-label">ტელეფონი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->tv == 1 ? 'checked' : '' }} name="tv">
+                                    <label class="form-check-label">ტელევიზორი</label>
+                                </div>
+                                <div class="form-check form-switch col-md-3 col-sm-6 col-12">
+                                    <input class="form-check-input" value="1" type="checkbox" {{ $appartment->conditioner == 1 ? 'checked' : '' }} name="conditioner">
+                                    <label class="form-check-label">კონდინციონერი</label>
+                                </div>
                             </div>
                             <button type="submit" class="mt-3 btn btn-primary">ობიექტის რედაქტირება</button>
                         </form>
@@ -241,7 +431,6 @@
                                     <option value="კომერციული ფართი">კომერციული ფართი</option>
                                     <option value="მიწის ნაკვეთი">მიწის ნაკვეთი</option>
                                     <option value="სასტუმრო">სასტუმრო</option>
-
                                 </select>
                             </div>
                             <div class="mb-3 form-group col-md-6 col-12">
@@ -261,18 +450,29 @@
                                 <label for="appartment_name">გათბობა </label>
                                 <select class="form-select" name="heating" aria-label="Default select example">
                                     <option value="" selected>არჩევა</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="ცენტრალური გათბობა">ცენტრალური გათბობა</option>
+                                    <option value="გაზის გამათბობელი">გაზის გამათბობელი</option>
+                                    <option value="იატაკის გათბობა">იატაკის გათბობა</option>
+                                    <option value="დენის გამათბობელი">დენის გამათბობელი</option>
                                 </select>
                             </div>
                             <div class="mb-3 form-group col-md-6 col-12">
                                 <label for="appartment_name">საწყობი </label>
                                 <select class="form-select" name="storage" aria-label="Default select example">
                                     <option value="" selected>არჩევა</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="სარდაფი">სარდაფი</option>
+                                    <option value="სხვენი">სხვენი</option>
+                                    <option value="საკუჭნაო">საკუჭნაო</option>
+                                    <option value="გარე სათავსო">გარე სათავსო</option>
+                                    <option value="საერთო სათავსო">საერთო სათავსო</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-group col-md-6 col-12">
+                                <label for="appartment_name">პარკინგი </label>
+                                <select class="form-select" name="parking" aria-label="Default select example">
+                                    <option value="" selected>არჩევა</option>
+                                    <option value="ავტოფარეხი">ავტოფარეხი</option>
+                                    <option value="პარკინგის ადგილი">პარკინგის ადგილი</option>
                                 </select>
                             </div>
                             <div class="mb-3 form-group col-md-6 col-12">
@@ -282,11 +482,11 @@
                             {{--  --}}
                             <div class="mb-3 form-group col-md-6 col-12">
                                 <label for="appartment_name">საძინებელი </label>
-                                <input type="number" class="form-control" name="bedroom">
+                                <input type="number" max="10" class="form-control" name="bedroom">
                             </div>
                             <div class="mb-3 form-group col-md-6 col-12">
                                 <label for="appartment_name">სააბაზანო </label>
-                                <input type="number" class="form-control" name="bathroom">
+                                <input type="number" max="10" class="form-control" name="bathroom">
                             </div>
 
                             <div class="mb-3 form-group col-md-6 col-12">

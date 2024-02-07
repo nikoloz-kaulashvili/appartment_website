@@ -40,36 +40,42 @@ class ProductImageController extends Controller
 
 
     function addWatermark($imagePath)
-    {
-        // Open image
-        $image = imagecreatefromstring(file_get_contents($imagePath));
+{
+    // Open image
+    $image = imagecreatefromstring(file_get_contents($imagePath));
 
-        // Add watermark
-        $watermark = imagecreatefrompng(public_path('assets/admin/image/watermark.png'));
+    // Add watermark
+    $watermark = imagecreatefrompng(public_path('assets/admin/image/watermark.png'));
 
-        // Determine new watermark width
-        $originalWidth = imagesx($image);
-        $newWatermarkWidth = imagesx($image) * 0.25; // 25% of original image width
+    // Determine new watermark width
+    $originalWidth = imagesx($image);
+    $newWatermarkWidth = $originalWidth * 0.25; // 25% of original image width
 
-        // Resize watermark proportionally
-        $newWatermarkHeight = imagesy($watermark) * ($newWatermarkWidth / imagesx($watermark));
-        $resizedWatermark = imagescale($watermark, $newWatermarkWidth, $newWatermarkHeight);
+    // Resize watermark proportionally
+    $newWatermarkHeight = imagesy($watermark) * ($newWatermarkWidth / imagesx($watermark));
+    $resizedWatermark = imagescale($watermark, $newWatermarkWidth, $newWatermarkHeight);
 
-        // Calculate position
-        $paddingX = ($originalWidth - $newWatermarkWidth) / 2; // Center horizontally
-        $paddingY = (imagesy($image) - $newWatermarkHeight) / 2; // Center vertically
+    // Apply transparency to the watermark
+    imagealphablending($resizedWatermark, false);
+    $transparency = 45; // 40% opacity (0.4 * 255)
+    imagefilter($resizedWatermark, IMG_FILTER_COLORIZE, 0, 0, 0, $transparency);
 
-        // Merge watermark onto image without a background and with opacity
-        imagecopy($image, $resizedWatermark, $paddingX, $paddingY, 0, 0, $newWatermarkWidth, $newWatermarkHeight);
+    // Calculate position
+    $paddingX = ($originalWidth - $newWatermarkWidth) / 2; // Center horizontally
+    $paddingY = (imagesy($image) - $newWatermarkHeight) / 2; // Center vertically
 
-        // Save image with watermark
-        imagepng($image, $imagePath);
+    // Merge watermark onto image without a background
+    imagecopy($image, $resizedWatermark, $paddingX, $paddingY, 0, 0, $newWatermarkWidth, $newWatermarkHeight);
 
-        // Free up memory
-        imagedestroy($image);
-        imagedestroy($watermark);
-        imagedestroy($resizedWatermark);
-    }
+    // Save image with watermark
+    imagepng($image, $imagePath);
+
+    // Free up memory
+    imagedestroy($image);
+    imagedestroy($watermark);
+    imagedestroy($resizedWatermark);
+}
+
 
 
 

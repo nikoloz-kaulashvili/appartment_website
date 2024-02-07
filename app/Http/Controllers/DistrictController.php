@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\District;
 use Illuminate\Http\Request;
+use App\Services\CurrencyConversionService;
 
 class DistrictController extends Controller
 {
@@ -14,6 +15,7 @@ class DistrictController extends Controller
     {
         $districts = District::all();
         $cities = City::all();
+ 
         return view('admin.components.districts', compact('districts','cities'));
     }
 

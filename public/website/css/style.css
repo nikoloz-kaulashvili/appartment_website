@@ -1055,7 +1055,7 @@ ul.min-f-img {
 
 .amini-con li {
     float: left;
-    width: 25%;
+    width: 33.3%;
     text-align: center;
     color: #494949;
     font-size: 14px;
@@ -1091,6 +1091,7 @@ ul.min-f-img {
     width: 100%;
     display: inline-block;
     text-align: center;
+    cursor: pointer;
 }
 
 .chat-re-s {
@@ -1137,10 +1138,10 @@ ul.min-f-img {
     background-color: #121211;
 }
 
-.min-f-box:hover .see-det {
+/* .min-f-box:hover .see-det {
     background-color: #ffbe00;
     color: #121211;
-}
+} */
 
 .mes1,
 .mes2 {
@@ -2522,10 +2523,10 @@ span.pl-5gallery {
     border: 2px dashed #fbb901;
 }
 
-.agent-det-b .see-det:hover {
+/* .agent-det-b .see-det:hover {
     background: #ffbe00;
     color: #121211;
-}
+} */
 
 .agents-list .col-md-4 {
     padding: 0px 7px;
@@ -3379,10 +3380,10 @@ span.left-s-cr {
 .cont-cr p {
     font-weight: 400;
 }
-.min-cr-list:hover .see-det {
+/* .min-cr-list:hover .see-det {
     background-color: #ffbe00;
     color: #121211;
-}
+} */
 .min-cr-list:hover .chat-re-s {
     background-color: #121211;
 }
@@ -4545,6 +4546,17 @@ font-size: 14px;
 .img-fluid{
     width: 100%;
 }
-.property-details , .popular, .min-ser-s{
+.property-details , .popular, .min-ser-s, .blog-home{
     background: #fff;
+}
+.fav{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    padding: 2px 8px;
+    background: #6969eb;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #fff;
 }

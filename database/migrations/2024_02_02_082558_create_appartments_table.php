@@ -24,7 +24,6 @@ return new class extends Migration
             $table->longText('description_en')->nullable();
             $table->decimal('price', 8,2);
             $table->decimal('space', 8,2);
-            // image
             $table->string('agreement_type')->index();
             $table->string('property_type')->index();
             $table->integer('bedroom')->nullable();
@@ -32,6 +31,7 @@ return new class extends Migration
             $table->string('repair')->index()->nullable();
             $table->string('heating')->index()->nullable();
             $table->string('storage')->index()->nullable();
+            $table->string('parking')->index()->nullable();
             $table->integer('status')->index()->default(1);
             $table->integer('priority')->index()->default(1);
 

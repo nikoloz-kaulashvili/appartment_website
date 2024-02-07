@@ -21,83 +21,24 @@
         <div class="container">
             <div class="row">
                 <div class="popular-t pb-30">
-                    <h2>Popular Properties</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.<br> Lorem Ipsum has been the industry's</p>
+                    <br>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa">
-                        <img src="website/images/bl-04.png" alt="">
+                
+                @foreach ($developers as $developer)
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <a href="">
+                            <div class="Villa">
+                            <img src="{{$developer->image}}" alt="">
+                            </div>
+                            <div class="villa-t">
+                                <span>01</span>
+                                <h3>{{$developer->name_ge}} - {{$developer->name_en}}</h3>
+                            </div>
+                        </a>
                     </div>
-                    <div class="villa-t">
-                        <span>01</span>
-                        <h3>Villa on Hollywood Boulevard</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa-Alberta">
-                        <img src="website/images/bl-05.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>02</span>
-                        <h3>Alberta Falls Way</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa">
-                        <img src="website/images/bl-06.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>03</span>
-                        <h3>Coral Ridge Colorado Springs</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa-Alberta">
-                        <img src="website/images/bl-05.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>02</span>
-                        <h3>Alberta Falls Way</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa">
-                        <img src="website/images/bl-04.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>01</span>
-                        <h3>Villa on Hollywood Boulevard</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa-Alberta">
-                        <img src="website/images/bl-05.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>02</span>
-                        <h3>Alberta Falls Way</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa">
-                        <img src="website/images/bl-06.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>03</span>
-                        <h3>Coral Ridge Colorado Springs</h3>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="Villa-Alberta">
-                        <img src="website/images/bl-05.png" alt="">
-                    </div>
-                    <div class="villa-t">
-                        <span>02</span>
-                        <h3>Alberta Falls Way</h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

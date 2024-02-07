@@ -48,13 +48,13 @@
                             </div>
                             <div class="navbar-wrap main-menu d-none d-lg-flex">
                                 <ul class="navigation">
-                                    <li class="active "><a>Home</a></li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="services.html">appartments</a></li>
-                                    <li><a href="services.html">developers</a></li>
-                                    <li><a href="services.html">projects</a></li>
-                                    <li><a href="property.html">upload</a></li>
-                                    <li><a href="property.html">services</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/about">About Us</a></li>
+                                    <li><a href="/appartments">appartments</a></li>
+                                    <li><a href="/developers">developers</a></li>
+                                    <li><a href="/projects">projects</a></li>
+                                    <li><a href="/upload">upload</a></li>
+                                    <li><a href="/services">services</a></li>
                                     {{-- <li><a href="property.html">ინტერიერის დიზაინერი</a></li> --}}
                                 </ul>
                             </div>
