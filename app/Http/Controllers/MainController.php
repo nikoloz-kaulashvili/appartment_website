@@ -7,14 +7,23 @@ use App\Models\Developer;
 use App\Models\ProductImage;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Services\CurrencyConversionService;
+
 
 class MainController extends Controller
 {
+    protected $currencyService;
+
+    public function __construct(CurrencyConversionService $currencyService)
+    {
+        $this->currencyService = $currencyService;
+    }
     public function landing()
     {
+        $rate = $this->currencyService->convertCurrency();
         $appartments = Appartment::where('priority', 2)->orderBy('created_at', 'desc')->take(6)->get();
         $image = ProductImage::all();
-        return view('website.components.landing', compact('appartments', 'image'));
+        return view('website.components.landing', compact('appartments', 'image', 'rate'));
     }
 
     public function about()
@@ -25,12 +34,21 @@ class MainController extends Controller
 
     public function appartments()
     {
+        $rate = $this->currencyService->convertCurrency();
         $appartments = Appartment::orderBy('created_at', 'desc')->get();
         $image = ProductImage::all();
         // Logic for the apartments page
-        return view('website.components.appartments', compact('appartments', 'image'));
+        return view('website.components.appartments', compact('appartments', 'image', 'rate'));
     }
+    public function showAppartment($id)
+    {
+        // Logic for the developers page
+        $rate = $this->currencyService->convertCurrency();
+        $appartment = Appartment::findOrFail($id);
+        $images = ProductImage::where('product_id', $id)->get();
 
+        return view('website.components.appartment', compact('appartment', 'images', 'rate'));
+    }
     public function developers()
     {
         // Logic for the developers page

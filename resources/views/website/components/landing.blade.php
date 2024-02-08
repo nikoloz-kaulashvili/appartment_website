@@ -221,53 +221,54 @@
                         </div>
                     </div>
                     <div class="row">
+                    
                         @foreach ($appartments as $appartment)
                             <div class="col-md-4">
                                 <div class="min-f-box">
                                     <div class="img-f-b">
-                                        <a href="pro-details.html">
-                                            <img src="{{$image->where('product_id', $appartment->id)->pluck('image_path')->first()}}" alt="" class="img-fluid" />
+                                        <a href="{{ route('main.show.appartment', $id = $appartment->id) }}">
+                                            <img src="{{ $image->where('product_id', $appartment->id)->pluck('image_path')->first() }}"
+                                                alt="" class="img-fluid" />
                                         </a>
-                                        @if ($appartment->priority == 2)
-                                          <span class="tag-l">VIP</span>
-                                        @endif
-                                          <span class="fav">FAV</span>
+                                        <span class="tag-l curency-changer">$</span>
+                                        <span class="fav">FAV</span>
                                     </div>
                                     <div class="f-cont-f">
                                         <h3>
-                                            <a href="pro-details.html">{{$appartment->name_ge}} - {{$appartment->name_en}}</a>
+                                            <a href="{{ route('main.show.appartment', $id = $appartment->id) }}">{{ $appartment->name_ge }}
+                                                - {{ $appartment->name_en }}</a>
                                         </h3>
                                         <ul class="img-map-co">
                                             <li>
                                                 <img src="/website/images/map.png" alt="" class="map-i" />
-                                                {{$appartment->address_ge}} - {{$appartment->address_en}}
+                                                {{ $appartment->address_ge }} - {{ $appartment->address_en }}
                                             </li>
                                             <li>
                                                 <img src="/website/images/clock.png" alt="" class="map-i" />
-                                                {{$appartment->created_at->format('Y-m-d')}}
+                                                {{ $appartment->created_at->format('Y-m-d') }}
                                             </li>
                                         </ul>
                                         <div class="d-flex">
-                                          <h3 class="price-m price">{{$appartment->price}}</h3>
-                                          <h3 class="price-m curency">$</h3>
+                                            <h3 class="price-m price">{{ $appartment->price }}</h3>
+                                            <h3 class="price-m curency">$</h3>
                                         </div>
-                                        
+
 
                                         <ul class="amini-con">
                                             <li>
                                                 <img src="/website/images/b-bed.png" alt=""
                                                     class="icon-ami" /><br />
-                                                საძინებელი {{$appartment->bedroom}}
+                                                საძინებელი {{ $appartment->bedroom }}
                                             </li>
                                             <li>
                                                 <img src="/website/images/b-bat.png" alt=""
                                                     class="icon-ami" /><br />
-                                                სააბაზანო {{$appartment->bathroom}}
+                                                სააბაზანო {{ $appartment->bathroom }}
                                             </li>
                                             <li>
                                                 <img src="/website/images/b-s.png" alt=""
                                                     class="icon-ami" /><br />
-                                                ფართი {{$appartment->space}}
+                                                ფართი {{ $appartment->space }}
                                             </li>
                                         </ul>
                                     </div>
@@ -283,4 +284,35 @@
                     </div>
                 </div>
             </section>
+            <script>
+                $(document).ready(function() {
+                    // Event listener for the button click
+                    $('.curency-changer').click(function() {
+                        // Toggle the currency symbol between "$" and "₾"
+                        $('.curency').text(function(index, text) {
+                            return text === '$' ? '₾' : '$';
+                        });
+                        $('.curency-changer').text(function(index, text) {
+                            return text === '$' ? '₾' : '$';
+                        });
+
+                        // Adjust the numeric value displayed in elements with the class "price"
+                        $('.price').text(function(index, text) {
+                            // Parse the numeric value from the text content
+                            var numericValue = parseFloat(text);
+
+                            if ($('.curency').text() === '₾') {
+                                // If the currency symbol is "₾", multiply the numeric value by 2
+                                numericValue *= {{$rate}};
+                            } else {
+                                // If the currency symbol is "$", divide the numeric value by 2
+                                numericValue /= {{$rate}};
+                            }
+
+                            // Format the numeric value to display ".00" at the end
+                            return numericValue.toFixed(2);
+                        });
+                    });
+                });
+            </script>
         @stop

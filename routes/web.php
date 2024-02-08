@@ -28,6 +28,7 @@ use App\Http\Controllers\ProductImageController;
 Route::get('/', [MainController::class, 'landing'])->name('main.landing');
 Route::get('/about', [MainController::class, 'about'])->name('main.about');
 Route::get('/appartments', [MainController::class, 'appartments'])->name('main.appartments');
+Route::get('/appartment/{id}', [MainController::class, 'showAppartment'])->name('main.show.appartment');
 Route::get('/developers', [MainController::class, 'developers'])->name('main.developers');
 Route::get('/projects', [MainController::class, 'projects'])->name('main.projects');
 Route::get('/upload', [MainController::class, 'upload'])->name('main.upload');

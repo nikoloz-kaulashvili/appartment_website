@@ -263,18 +263,17 @@
                                 <div class="col-md-4">
                                     <div class="min-f-box">
                                         <div class="img-f-b">
-                                            <a href="pro-details.html">
+                                            <a href="{{route('main.show.appartment', $id = $appartment->id)}}">
                                                 <img src="{{ $image->where('product_id', $appartment->id)->pluck('image_path')->first() }}"
                                                     alt="" class="img-fluid" />
                                             </a>
-                                            @if ($appartment->priority == 2)
-                                                <span class="tag-l">VIP</span>
-                                            @endif
+                                            <span class="tag-l curency-changer">$</span>
+
                                             <span class="fav">FAV</span>
                                         </div>
                                         <div class="f-cont-f">
                                             <h3>
-                                                <a href="pro-details.html">{{ $appartment->name_ge }} -
+                                                <a href="{{route('main.show.appartment', $id = $appartment->id)}}">{{ $appartment->name_ge }} -
                                                     {{ $appartment->name_en }}</a>
                                             </h3>
                                             <ul class="img-map-co">
@@ -350,4 +349,35 @@
         </section>
         <!--Ser-details-End-->
     </div>
+    <script>
+        $(document).ready(function() {
+            // Event listener for the button click
+            $('.curency-changer').click(function() {
+                // Toggle the currency symbol between "$" and "₾"
+                $('.curency').text(function(index, text) {
+                    return text === '$' ? '₾' : '$';
+                });
+                $('.curency-changer').text(function(index, text) {
+                    return text === '$' ? '₾' : '$';
+                });
+
+                // Adjust the numeric value displayed in elements with the class "price"
+                $('.price').text(function(index, text) {
+                    // Parse the numeric value from the text content
+                    var numericValue = parseFloat(text);
+
+                    if ($('.curency').text() === '₾') {
+                        // If the currency symbol is "₾", multiply the numeric value by 2
+                        numericValue *= {{$rate}};
+                    } else {
+                        // If the currency symbol is "$", divide the numeric value by 2
+                        numericValue /= {{$rate}};
+                    }
+
+                    // Format the numeric value to display ".00" at the end
+                    return numericValue.toFixed(2);
+                });
+            });
+        });
+    </script>
 @stop

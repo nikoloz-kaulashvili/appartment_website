@@ -4560,3 +4560,33 @@ font-size: 14px;
     font-size: 14px;
     color: #fff;
 }
+.swiper-slide{
+    padding:0;
+    background: none;
+}
+.swiper-slide img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.swiper-button-next , .swiper-button-prev{
+    color: #000;
+
+}
+.curency-changer{
+    cursor: pointer;
+    transition: 0.3s;
+    padding-top: 5px;
+    z-index: 222;
+}
+.curency-changer:hover{
+    background: #000;
+}
+.changer{
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    padding-left: 17px;
+    padding-top: 7px;
+}
