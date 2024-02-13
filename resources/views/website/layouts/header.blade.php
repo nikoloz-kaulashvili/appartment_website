@@ -44,7 +44,7 @@
                     <div class="menu-wrap">
                         <nav class="menu-nav">
                             <div class="logo">
-                                <a href="index.html"><img src="/website/images/header-logo.png" alt=""></a>
+                                <a href="/"><img src="/website/images/header-logo.png" alt=""></a>
                             </div>
                             <div class="navbar-wrap main-menu d-none d-lg-flex">
                                 <ul class="navigation">
@@ -74,7 +74,7 @@
                         <nav class="menu-box">
                             <div class="close-btn"><i class="fa fa-times"></i></div>
                             <div class="nav-logo">
-                                <a href="index.html"><img src="/website/images/header-logo.png" alt="" title=""></a>
+                                <a href="/"><img src="/website/images/header-logo.png" alt="" title=""></a>
                             </div>
                             <div class="menu-outer">
 

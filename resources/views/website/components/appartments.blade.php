@@ -34,20 +34,24 @@
                                                 ბინები</label>
                                         </li>
                                         <li>
-                                            <label for="Office"><input type="checkbox" id="Office"
+                                            <label for="Office"><input value="სახლელბი & აგარაკები" type="checkbox" id="Office"
                                                     class="filter" />სახლები & აგარაკები</label>
                                         </li>
                                         <li>
                                             <label for="Rooms"><input type="checkbox" id="Rooms"
-                                                    class="filter" />კომერციული ფართები</label>
+                                                    class="filter" value="კომერციული ფართები" />კომერციული ფართები</label>
                                         </li>
                                         <li>
                                             <label for="House"><input type="checkbox" id="House"
-                                                    class="filter" />მიწის ნაკვეთები</label>
+                                                    class="filter" value="მიწის ნაკვეთები" />მიწის ნაკვეთები</label>
                                         </li>
                                         <li>
                                             <label for="Villa"><input type="checkbox" id="Villa"
-                                                    class="filter" />სასტუმროები</label>
+                                                    class="filter" value="სასტუმროები" />სასტუმროები</label>
+                                        </li>
+                                        <li>
+                                            <label for="Villa"><input type="checkbox" id="Villa"
+                                                    class="filter" value="ავტოსადგომი" />ავტოსადგომი</label>
                                         </li>
                                     </ul>
                                 </div>
@@ -75,7 +79,6 @@
                                 <div class="filter-list">
                                     <h3>რემონტი</h3>
                                     <div class="form-group none">
-                                        <label>საძინებელი</label>
                                         <div class="input-with-icon">
                                             <select id="Bedrooms" class="form-control">
                                                 <option value="">&nbsp;</option>
@@ -89,25 +92,11 @@
                                     </div>
                                 </div>
                                 <div class="filter-list">
-                                    <h3>Price Range</h3>
+                                    <h3>Price Range ( $ )</h3>
                                     <div class="form-group none">
                                         <div class="d-flex input-with-icon">
-                                            <select id="price" class="mr-2 form-control">
-                                                <option value="">from</option>
-                                                <option value="1">From 40,000 To 10m</option>
-                                                <option value="2">From 60,000 To 20m</option>
-                                                <option value="3">From 70,000 To 30m</option>
-                                                <option value="3">From 80,000 To 40m</option>
-                                                <option value="3">From 90,000 To 50m</option>
-                                            </select>
-                                            <select id="price" class="ml-2 form-control">
-                                                <option value="">&nbsp;</option>
-                                                <option value="1">From 40,000 To 10m</option>
-                                                <option value="2">From 60,000 To 20m</option>
-                                                <option value="3">From 70,000 To 30m</option>
-                                                <option value="3">From 80,000 To 40m</option>
-                                                <option value="3">From 90,000 To 50m</option>
-                                            </select>
+                                            <input class="mr-1 form-control" placeholder="დან" type="number">
+                                            <input class="ml-1 form-control" placeholder="მდე" type="number" >
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +258,9 @@
                                             </a>
                                             <span class="tag-l curency-changer">$</span>
 
-                                            <span class="fav">FAV</span>
+                                            <span class="fav"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                              </svg></span>
                                         </div>
                                         <div class="f-cont-f">
                                             <h3>
@@ -318,30 +309,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-                        </div>
-                        <div class="row pagination">
-                            <div class="col-md-12">
-                                <div class="pagenum">
-                                    <ul>
-                                        <li class="active">
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">4</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">5</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -1093,6 +1093,10 @@ ul.min-f-img {
     text-align: center;
     cursor: pointer;
 }
+.see-det:hover {
+    color: #fff;
+}
+
 
 .chat-re-s {
     border: none;
@@ -4589,4 +4593,31 @@ font-size: 14px;
     font-size: 25px;
     padding-left: 17px;
     padding-top: 7px;
+}
+.full_search_box .form-control{
+    padding-left: 0px !important;
+}
+.border-none{
+    border: none !important;
+}
+.navigation{
+    z-index: 511;
+}
+
+.categories .min-pro-box a{
+    height: 270px;
+}
+.categories h3 a{
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #6969eb;
+    height: max-content !important;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    color: #fff;
+}
+.categories img{
+    height: 270px;
+    object-fit: cover;
 }

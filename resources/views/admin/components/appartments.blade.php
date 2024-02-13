@@ -144,11 +144,13 @@
                                     <select class="form-select" name="property_type" aria-label="Default select example"
                                         required>
                                         <option value="{{$appartment->property_type}}">{{$appartment->property_type}}</option>
-                                        <option value="ბინა">ბინა</option>
-                                        <option value="სახლი ან აგარაკი">სახლი ან აგარაკი</option>
-                                        <option value="კომერციული ფართი">კომერციული ფართი</option>
-                                        <option value="მიწის ნაკვეთი">მიწის ნაკვეთი</option>
-                                        <option value="სასტუმრო">სასტუმრო</option>
+                                        <option value="ბინები">ბინა</option>
+                                        <option value="სახლელბი & აგარაკები">სახლი ან აგარაკი</option>
+                                        <option value="კომერციული ფართები">კომერციული ფართი</option>
+                                        <option value="მიწის ნაკვეთები">მიწის ნაკვეთი</option>
+                                        <option value="სასტუმროები">სასტუმრო</option>
+                                        <option value="ავტოსადგომები">ავტოსადგომი</option>
+
                                     </select>
                                 </div>
                                 <div class="mb-3 form-group col-md-6 col-12">
@@ -426,11 +428,11 @@
                                 <select class="form-select" name="property_type" aria-label="Default select example"
                                     required>
                                     <option value="" selected>არჩევა</option>
-                                    <option value="ბინა">ბინა</option>
-                                    <option value="სახლი ან აგარაკი">სახლი ან აგარაკი</option>
-                                    <option value="კომერციული ფართი">კომერციული ფართი</option>
-                                    <option value="მიწის ნაკვეთი">მიწის ნაკვეთი</option>
-                                    <option value="სასტუმრო">სასტუმრო</option>
+                                    <option value="სახლელბი & აგარაკები">სახლი ან აგარაკი</option>
+                                    <option value="კომერციული ფართები">კომერციული ფართი</option>
+                                    <option value="მიწის ნაკვეთები">მიწის ნაკვეთი</option>
+                                    <option value="სასტუმროები">სასტუმრო</option>
+                                    <option value="ავტოსადგომები">ავტოსადგომი</option>
                                 </select>
                             </div>
                             <div class="mb-3 form-group col-md-6 col-12">

@@ -10,13 +10,7 @@
               </a>
             </span>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's
-              standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a
-              type specimen book. It has survived not only five centuries,
-              but also the leap into electronic typesetting, remaining
-              essentially unchanged.
+              
             </p>
           </div>
         </div>
@@ -24,16 +18,14 @@
           <div class="footer-cont footer-logo mt-15">
             <h4>Explore</h4>
             <ul class="menu-footer wi-50">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Meet Our Team</a></li>
-              <li><a href="#">Our Portfolio</a></li>
-              <li><a href="#">Latest News</a></li>
-              <li><a href="#">Contact</a></li>
-
-              <li><a href="#">Support</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms Of Use</a></li>
-              <li><a href="#">Help</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About us</a></li>
+              <li><a href="/appartments">Appartments</a></li>
+              <li><a href="/developers">Developers</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/projects">Projects</a></li>
+              <li><a href="/upload">Upload</a></li>
+              {{-- <li><a href="/services">Services</a></li> --}}
             </ul>
           </div>
         </div>

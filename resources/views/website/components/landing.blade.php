@@ -22,65 +22,67 @@
                             <div class="row justify-content-center mt-50">
                                 <div class="col-xl-10 col-lg-11 col-md-12">
                                     <div class="full_search_box">
-                                        <div class="search_hero_wrapping">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-3 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>City/Street</label>
-                                                        <div class="input-with-icon">
-                                                            <select id="location" class="form-control">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="1">New York City</option>
-                                                                <option value="2">Honolulu, Hawaii</option>
-                                                                <option value="3">California</option>
-                                                                <option value="4">New Orleans</option>
-                                                                <option value="5">Washington</option>
-                                                                <option value="6">Charleston</option>
-                                                            </select>
+                                        <form action="{{ route('main.appartments') }}" method="get">
+                                            <div class="search_hero_wrapping">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>ქალაქი</label>
+                                                            <div class="input-with-icon">
+                                                                <select id="location" name="city" class="form-control">
+                                                                    <option value="">&nbsp;</option>
+                                                                    @foreach ($cities as $city)
+                                                                        <option value="{{ $city->id }}">
+                                                                            {{ $city->name_ge }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-3 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>Property Type</label>
-                                                        <div class="input-with-icon">
-                                                            <select id="ptypes" class="form-control">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="1">All categories</option>
-                                                                <option value="2">Apartment</option>
-                                                                <option value="3">Villas</option>
-                                                                <option value="4">Commercial</option>
-                                                                <option value="5">Offices</option>
-                                                                <option value="6">Garage</option>
-                                                            </select>
+                                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>შეთანხმების ტიპი</label>
+                                                            <div class="input-with-icon">
+                                                                <select id="ptypes" name="agreement_type"
+                                                                    class="form-control">
+                                                                    <option value="">&nbsp;</option>
+                                                                    <option value="იყიდება">იყიდება</option>
+                                                                    <option value="გირავდება">გირავდება</option>
+                                                                    <option value="ქირავდება">ქირავდება</option>
+                                                                    <option value="ქირავდება დღიურდა">ქირავდება დღიურდა
+                                                                    </option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-lg-4 col-md-4 col-sm-12">
-                                                    <div class="form-group none">
-                                                        <label>Price Range</label>
-                                                        <div class="input-with-icon">
-                                                            <select id="price" class="form-control">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="1">From 40,000 To 10m</option>
-                                                                <option value="2">From 60,000 To 20m</option>
-                                                                <option value="3">From 70,000 To 30m</option>
-                                                                <option value="3">From 80,000 To 40m</option>
-                                                                <option value="3">From 90,000 To 50m</option>
-                                                            </select>
+                                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                                        <div class="form-group none">
+                                                            <label>უძრავი ქონების ტიპი</label>
+                                                            <div class="input-with-icon">
+                                                                <select id="price" name="property_type"
+                                                                    class="form-control">
+                                                                    <option value="">&nbsp;</option>
+                                                                    <option value="ბინები">ბინები</option>
+                                                                    <option value="სახლელბი & აგარაკები">სახლი ან აგარაკი
+                                                                    </option>
+                                                                    <option value="კომერციული ფართები">კომერციული ფართი
+                                                                    </option>
+                                                                    <option value="მიწის ნაკვეთები">მიწის ნაკვეთი</option>
+                                                                    <option value="სასტუმროები">სასტუმრო</option>
+                                                                    <option value="ავტოსადგომები">ავტოსადგომი</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-lg-1 col-md-2 col-sm-12 small-padd">
-                                                    <div class="form-group none">
-                                                        <a href="#" class="btn search-btn">GO!</a>
+                                                    <div class="col-lg-3 col-md-3 col-sm-12 small-padd">
+                                                        <div class="border-none form-group none">
+                                                            <button class="btn search-btn">ძებნა</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -92,12 +94,12 @@
             </div>
             <!-- Slider-End -->
             <!--Popular Properties Start-->
-            <section class="pt-90 pb-60 pop-pro pop-pro-mar">
+            <section class="pt-90 pb-60 pop-pro pop-pro-mar categories">
                 <div class="container">
                     <div class="mb-40 row">
                         <div class="col-md-5">
                             <div class="heading-t fadeInUp animated">
-                                <h2>პოპულარული კატეგორიები</h2>
+                                <h2>კატეგორიები</h2>
                             </div>
                         </div>
 
@@ -109,72 +111,74 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="min-pro-box">
-                                        <a href="pro-details.html">
-                                            <img src="/website/images/f1.png" alt="" class="bg-pro-i" />
+                                        <a href="/appartments?property_type=ბინები">
+                                            <img src="/website/images/1.jpg" alt="" class="bg-pro-i" />
                                         </a>
                                         <div class="min-box-t">
                                             <h3>
-                                                <a href="pro-details.html">Villa on Hollywood Boulevard</a>
+                                                <a href="/appartments?property_type=ბინები">ბინები</a>
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="min-pro-box">
-                                        <a href="pro-details.html">
-                                            <img src="/website/images/f1.png" alt="" class="bg-pro-i" />
+                                        <a href="/appartments?property_type=სახლები & აგარაკები">
+                                            <img src="/website/images/2.jpeg" alt="" class="bg-pro-i" />
                                         </a>
                                         <div class="min-box-t">
                                             <h3>
-                                                <a href="pro-details.html">Villa on Hollywood Boulevard</a>
+                                                <a href="/appartments?property_type=სახლები & აგარაკები">სახლები &
+                                                    აგარაკები</a>
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="min-pro-box">
-                                        <a href="pro-details.html">
-                                            <img src="/website/images/f1.png" alt="" class="bg-pro-i" />
+                                        <a href="/appartments?property_type=კომერციული ფართები">
+                                            <img src="/website/images/3.jpg" alt="" class="bg-pro-i" />
                                         </a>
                                         <div class="min-box-t">
                                             <h3>
-                                                <a href="pro-details.html">Villa on Hollywood Boulevard</a>
+                                                <a href="/appartments?property_type=კომერციული ფართები">კომერციული
+                                                    ფართები</a>
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="min-pro-box">
-                                        <a href="pro-details.html">
-                                            <img src="/website/images/f1.png" alt="" class="bg-pro-i" />
+                                        <a href="/appartments?property_type=მიწის ნაკვეთები">
+                                            <img src="/website/images/4.jpg" alt="" class="bg-pro-i" />
                                         </a>
                                         <div class="min-box-t">
                                             <h3>
-                                                <a href="pro-details.html">Villa on Hollywood Boulevard</a>
+                                                <a href="/appartments?property_type=მიწის ნაკვეთები">მიწის ნაკვეთები</a>
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="min-pro-box">
-                                        <a href="pro-details.html">
-                                            <img src="/website/images/f1.png" alt="" class="bg-pro-i" />
+                                        <a href="/appartments?property_type=სასტუმროები">
+                                            <img src="/website/images/5.jpg" alt="" class="bg-pro-i" />
                                         </a>
                                         <div class="min-box-t">
                                             <h3>
-                                                <a href="pro-details.html">Villa on Hollywood Boulevard</a>
+                                                <a href="/appartments?property_type=სასტუმროები">სასტუმროები</a>
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="min-pro-box">
-                                        <a href="pro-details.html">
-                                            <img src="/website/images/f1.png" alt="" class="bg-pro-i" />
+                                        <a href="/appartments?property_type=ავტოსადგომები">
+                                            <img src="/website/images/6.jpg" alt="" class="bg-pro-i" />
                                         </a>
                                         <div class="min-box-t">
                                             <h3>
-                                                <a href="pro-details.html">Villa on Hollywood Boulevard</a>
+                                                <a href="/appartments?property_type=ავტოსადგომები">ავტოსადგომები</a>
                                             </h3>
                                         </div>
                                     </div>
@@ -221,7 +225,7 @@
                         </div>
                     </div>
                     <div class="row">
-                    
+
                         @foreach ($appartments as $appartment)
                             <div class="col-md-4">
                                 <div class="min-f-box">
@@ -231,7 +235,12 @@
                                                 alt="" class="img-fluid" />
                                         </a>
                                         <span class="tag-l curency-changer">$</span>
-                                        <span class="fav">FAV</span>
+                                        <span class="fav"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                height="16" fill="currentColor" class="bi bi-heart"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                            </svg></span>
                                     </div>
                                     <div class="f-cont-f">
                                         <h3>
@@ -274,7 +283,7 @@
                                     </div>
 
                                     <div class="detail-b">
-                                        <a href="pro-details.html" class="see-det"> დეტალურად </a>
+                                        <a href="/appartment?property_type=ბინები" class="see-det"> დეტალურად </a>
 
                                     </div>
                                 </div>
@@ -303,10 +312,10 @@
 
                             if ($('.curency').text() === '₾') {
                                 // If the currency symbol is "₾", multiply the numeric value by 2
-                                numericValue *= {{$rate}};
+                                numericValue *= {{ $rate }};
                             } else {
                                 // If the currency symbol is "$", divide the numeric value by 2
-                                numericValue /= {{$rate}};
+                                numericValue /= {{ $rate }};
                             }
 
                             // Format the numeric value to display ".00" at the end

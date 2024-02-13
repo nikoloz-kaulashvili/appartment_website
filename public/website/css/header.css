@@ -786,7 +786,7 @@
 .one-header .logo:after {
     position: absolute;
     content: '';
-    right: -89px;
+    right: -88px;
     top: 0px;
     border-top: 132px solid #ffbe00;
     border-right: 89px solid transparent;

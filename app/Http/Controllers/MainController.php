@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appartment;
+use App\Models\City;
 use App\Models\Developer;
 use App\Models\ProductImage;
 use App\Models\Project;
@@ -23,7 +24,8 @@ class MainController extends Controller
         $rate = $this->currencyService->convertCurrency();
         $appartments = Appartment::where('priority', 2)->orderBy('created_at', 'desc')->take(6)->get();
         $image = ProductImage::all();
-        return view('website.components.landing', compact('appartments', 'image', 'rate'));
+        $cities = City::all();
+        return view('website.components.landing', compact('appartments', 'image', 'rate','cities'));
     }
 
     public function about()
@@ -32,12 +34,25 @@ class MainController extends Controller
         return view('website.components.about');
     }
 
-    public function appartments()
+    public function appartments(Request $request)
     {
         $rate = $this->currencyService->convertCurrency();
-        $appartments = Appartment::orderBy('created_at', 'desc')->get();
+        $appartmentsQuery = Appartment::query();
+
+    if ($request->filled('city')) {
+        $appartmentsQuery->where('city_id', $request->input('city'));
+    }
+
+    if ($request->filled('agreement_type')) {
+        $appartmentsQuery->where('agreement_type', $request->input('agreement_type'));
+    }
+
+    if ($request->filled('property_type')) {
+        $appartmentsQuery->where('property_type', $request->input('property_type'));
+    }
+
+    $appartments = $appartmentsQuery->orderBy('created_at', 'desc')->get();
         $image = ProductImage::all();
-        // Logic for the apartments page
         return view('website.components.appartments', compact('appartments', 'image', 'rate'));
     }
     public function showAppartment($id)
