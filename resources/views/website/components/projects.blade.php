@@ -30,7 +30,7 @@
                    <div class="mb-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="blog-h">
                             <div class="blog-img">
-                                <a href="blog-details.html"><img src="{{$project->image}}" alt=""></a>
+                                <a href="/projects?id={{$project->id}}"><img src="{{$project->image}}" alt=""></a>
                             </div>
                             <div class="blog-t">
                                 <span> {{ $project->created_at->format('Y-m-d') }}</span>

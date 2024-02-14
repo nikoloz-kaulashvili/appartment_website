@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name_en');
             $table->string('address_ge');
             $table->string('address_en');
-            $table->string('map')->nullable();
+            $table->longText('map')->nullable();
             $table->longText('description_ge')->nullable();
             $table->longText('description_en')->nullable();
             $table->decimal('price', 8,2);

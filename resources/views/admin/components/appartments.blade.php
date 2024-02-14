@@ -95,7 +95,7 @@
                                 <div class="mb-3 form-group col-md-6 col-12">
                                     <label for="appartment_name">ქალაქი </label>
                                     <select class="form-select" name="city_id" aria-label="Default select example">
-                                        <option value="" selected>არჩევა</option>
+                                        <option value="{{ $appartment->city_id }}">{{ $appartment->city_id }}</option>
                                         @foreach ($cities as $city)
                                             <option value="{{ $city->id }}">{{ $city->name_ge }}</option>
                                         @endforeach
@@ -104,7 +104,7 @@
                                 <div class="mb-3 form-group col-md-6 col-12">
                                     <label for="appartment_name">უბანი</label>
                                     <select class="form-select" name="district_id" aria-label="Default select example">
-                                        <option value="" selected>არჩევა</option>
+                                        <option value="{{ $appartment->district_id }}">{{ $appartment->district_id }}</option>
                                         @foreach ($districts as $district)
                                             <option value="{{ $district->id }}">{{ $district->name_ge }}</option>
                                         @endforeach
@@ -112,11 +112,11 @@
                                 </div>
                                 <div class="mb-3 form-group col-md-6 col-12">
                                     <label for="appartment_name">აღწერა (ქართულად)</label>
-                                    <textarea class="form-control"  name="description_ge" cols="30" rows="10">{ !! $appartment->description_ge !! }</textarea>
+                                    <textarea class="form-control"  name="description_ge" cols="30" rows="10">{{ $appartment->description_ge }}</textarea>
                                 </div>
                                 <div class="mb-3 form-group col-md-6 col-12">
                                     <label for="appartment_name">აღწერა (ინგლისურად)</label>
-                                    <textarea class="form-control" name="description_en" cols="30" rows="10">{ !! $appartment->description_en !! }</textarea>
+                                    <textarea class="form-control" name="description_en" cols="30" rows="10">{{ $appartment->description_en  }}</textarea>
                                 </div>
     
                                 <div class="mb-3 form-group col-md-6 col-12">
@@ -504,6 +504,8 @@
                                     <option value="1">არარის პრიორიტეტული</option>
                                     <option value="2">პრიორიტეტული</option>
                                 </select>
+                            </div>
+                            <div class="mb-3 form-group col-md-6 col-12">
                             </div>
 
                             <div class="form-check form-switch col-md-3 col-sm-6 col-12">

@@ -26,223 +26,257 @@
                             <span class="head-text">Filter <img src="website/images/filter.png" alt=""
                                     class="img-po-f" /></span>
                             <div class="min-f-list">
-                                <div class="filter-list">
-                                    <h3>უძრავი ქონების ტიპი</h3>
-                                    <ul>
-                                        <li>
-                                            <label for="Apartment"><input type="checkbox" id="Apartment" class="filter" />
-                                                ბინები</label>
-                                        </li>
-                                        <li>
-                                            <label for="Office"><input value="სახლელბი & აგარაკები" type="checkbox" id="Office"
-                                                    class="filter" />სახლები & აგარაკები</label>
-                                        </li>
-                                        <li>
-                                            <label for="Rooms"><input type="checkbox" id="Rooms"
-                                                    class="filter" value="კომერციული ფართები" />კომერციული ფართები</label>
-                                        </li>
-                                        <li>
-                                            <label for="House"><input type="checkbox" id="House"
-                                                    class="filter" value="მიწის ნაკვეთები" />მიწის ნაკვეთები</label>
-                                        </li>
-                                        <li>
-                                            <label for="Villa"><input type="checkbox" id="Villa"
-                                                    class="filter" value="სასტუმროები" />სასტუმროები</label>
-                                        </li>
-                                        <li>
-                                            <label for="Villa"><input type="checkbox" id="Villa"
-                                                    class="filter" value="ავტოსადგომი" />ავტოსადგომი</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="filter-list">
-                                    <h3>გარიგების ტიპი</h3>
-                                    <ul>
-                                        <li>
-                                            <label for="Sale"><input type="checkbox" id="Sale"
-                                                    class="filter" />იყიდება</label>
-                                        </li>
-                                        <li>
-                                            <label for="Rent"><input type="checkbox" id="Rent"
-                                                    class="filter" />გირავდება</label>
-                                        </li>
-                                        <li>
-                                            <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                    class="filter" />ქირავდება</label>
-                                        </li>
-                                        <li>
-                                            <label for="HotOffer"><input type="checkbox" id="HotOffer"
-                                                    class="filter" />ქირავდება დღიურად</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="filter-list">
-                                    <h3>რემონტი</h3>
-                                    <div class="form-group none">
-                                        <div class="input-with-icon">
-                                            <select id="Bedrooms" class="form-control">
-                                                <option value="">&nbsp;</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="3">4</option>
-                                                <option value="3">5+</option>
-                                            </select>
+                                <form action="{{route('main.appartments')}}" method="get">
+                                    <div class="filter-list">
+                                        <div class="widget_list widget_categories">
+                                            <h3>citys</h3>
+                                            <ul>
+                                                @if ($cities)
+                                                    @foreach ($cities as $city)
+                                                        @php
+                                                            $districts = DB::table('districts')
+                                                            ->where('city_id', '=', $city->id)
+                                                            ->get()
+                                                        @endphp
+                                                        <li class="widget_sub_categories ">
+                                                            <a href="#" class="city cities-filter"
+                                                                data="{{ $city->id }}">{{ $city->name_ge }}</a>
+                                                            <ul class="widget_dropdown_categories">
+                                                                @if ($districts)
+                                                                    @foreach ($districts as $district)
+                                                                        <li><a href="#" class="district district-filter"
+                                                                                data="{{ $district->id }}">{{ $district->name_ge }}</a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                @endif
+                                                            </ul>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                                <input type="hidden" id="city" name="city_id">
+                                                <input type="hidden" id="district" name="district_id">
+                                            </ul>
+                                            <button class="my-3 btn btn-primary">გაფილტვრა</button>
+
                                         </div>
+                                        <h3>უძრავი ქონების ტიპი</h3>
+                                        <ul>
+                                            <li>
+                                                <label for="Apartment"><input type="checkbox" id="Apartment" class="filter" />
+                                                    ბინები</label>
+                                            </li>
+                                            <li>
+                                                <label for="Office"><input value="სახლელბი & აგარაკები" type="checkbox" id="Office"
+                                                        class="filter" />სახლები & აგარაკები</label>
+                                            </li>
+                                            <li>
+                                                <label for="Rooms"><input type="checkbox" id="Rooms"
+                                                        class="filter" value="კომერციული ფართები" />კომერციული ფართები</label>
+                                            </li>
+                                            <li>
+                                                <label for="House"><input type="checkbox" id="House"
+                                                        class="filter" value="მიწის ნაკვეთები" />მიწის ნაკვეთები</label>
+                                            </li>
+                                            <li>
+                                                <label for="Villa"><input type="checkbox" id="Villa"
+                                                        class="filter" value="სასტუმროები" />სასტუმროები</label>
+                                            </li>
+                                            <li>
+                                                <label for="Villa"><input type="checkbox" id="Villa"
+                                                        class="filter" value="ავტოსადგომი" />ავტოსადგომი</label>
+                                            </li>
+                                        </ul>
                                     </div>
-                                </div>
-                                <div class="filter-list">
-                                    <h3>Price Range ( $ )</h3>
-                                    <div class="form-group none">
-                                        <div class="d-flex input-with-icon">
-                                            <input class="mr-1 form-control" placeholder="დან" type="number">
-                                            <input class="ml-1 form-control" placeholder="მდე" type="number" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="filter-list">
-                                    <h3>Rooms</h3>
-                                    <div class="form-group none">
-                                        <label>საძინებელი</label>
-                                        <div class="input-with-icon">
-                                            <select id="Bedrooms" class="form-control">
-                                                <option value="">&nbsp;</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="3">4</option>
-                                                <option value="3">5+</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group none">
-                                        <label>სააბაზანო</label>
-                                        <div class="input-with-icon">
-                                            <select id="Bathrooms" class="form-control">
-                                                <option value="">&nbsp;</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="filter-list">
-                                    <h3>მახასიათებლები</h3>
-                                    <div class="d-flex">
+                                    <div class="filter-list">
+                                        <h3>გარიგების ტიპი</h3>
                                         <ul>
                                             <li>
                                                 <label for="Sale"><input type="checkbox" id="Sale"
-                                                        class="filter" />აივანი</label>
+                                                        class="filter" />იყიდება</label>
                                             </li>
                                             <li>
                                                 <label for="Rent"><input type="checkbox" id="Rent"
-                                                        class="filter" />ვერანდა</label>
+                                                        class="filter" />გირავდება</label>
                                             </li>
                                             <li>
                                                 <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />ლოჯი</label>
+                                                        class="filter" />ქირავდება</label>
                                             </li>
                                             <li>
                                                 <label for="HotOffer"><input type="checkbox" id="HotOffer"
-                                                        class="filter" />ბუნებრივი აირი</label>
-                                            </li>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />ინტერნეტი</label>
-                                            </li>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />ბუხარი</label>
-                                            </li>
-                                        </ul>
-                                        <ul>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />ავეჯი</label>
-                                            </li>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />სამგზავრო ლიფტი</label>
-                                            </li>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />სატვირთო ლიფტი</label>
-                                            </li>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />ტელეფონი</label>
-                                            </li>
-                                            <li>
-                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                        class="filter" />ტელევიზორი</label>
+                                                        class="filter" />ქირავდება დღიურად</label>
                                             </li>
                                         </ul>
                                     </div>
+                                    <div class="filter-list">
+                                        <h3>რემონტი</h3>
+                                        <div class="form-group none">
+                                            <div class="input-with-icon">
+                                                <select id="Bedrooms" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="ახალ გარემონტებული">ახალ გარემონტებული</option>
+                                                    <option value="ძველი გარემონტებული">ძველი გარემონტებული</option>
+                                                    <option value="მიმდინარეობს რემონტი">მიმდინარეობს რემონტი</option>
+                                                    <option value="სარემონტო">სარემონტო</option>
+                                                    <option value="თეთრი კარკასი">თეთრი კარკასი</option>
+                                                    <option value="შავი კარკასი">შავი კარკასი</option>
+                                                    <option value="მწვანე კარკასი">მწვანე კარკასი</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-list">
+                                        <h3>Price Range ( $ )</h3>
+                                        <div class="form-group none">
+                                            <div class="d-flex input-with-icon">
+                                                <input class="mr-1 form-control" placeholder="დან" type="number">
+                                                <input class="ml-1 form-control" placeholder="მდე" type="number" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-list">
+                                        <h3>Rooms</h3>
+                                        <div class="form-group none">
+                                            <label>საძინებელი</label>
+                                            <div class="input-with-icon">
+                                                <select id="Bedrooms" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="3">4</option>
+                                                    <option value="3">5+</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group none">
+                                            <label>სააბაზანო</label>
+                                            <div class="input-with-icon">
+                                                <select id="Bathrooms" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filter-list">
+                                        <h3>მახასიათებლები</h3>
+                                        <div class="d-flex">
+                                            <ul>
+                                                <li>
+                                                    <label for="Sale"><input type="checkbox" id="Sale"
+                                                            class="filter" />აივანი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="Rent"><input type="checkbox" id="Rent"
+                                                            class="filter" />ვერანდა</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />ლოჯი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="HotOffer"><input type="checkbox" id="HotOffer"
+                                                            class="filter" />ბუნებრივი აირი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />ინტერნეტი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />ბუხარი</label>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />ავეჯი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />სამგზავრო ლიფტი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />სატვირთო ლიფტი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />ტელეფონი</label>
+                                                </li>
+                                                <li>
+                                                    <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                            class="filter" />ტელევიზორი</label>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                </div>
+                                    </div>
+                                    <div class="filter-list">
+                                        <h3>გათბობა</h3>
+                                        <ul>
+                                            <li>
+                                                <label for="Sale"><input type="checkbox" id="Sale"
+                                                        class="filter" />ცენტრალური გათბობა</label>
+                                            </li>
+                                            <li>
+                                                <label for="Rent"><input type="checkbox" id="Rent"
+                                                        class="filter" />გაზის გამათბობელი</label>
+                                            </li>
+                                            <li>
+                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                        class="filter" />დენის გამათბობელი</label>
+                                            </li>
+                                            <li>
+                                                <label for="HotOffer"><input type="checkbox" id="HotOffer"
+                                                        class="filter" />იატაკის გათბობა</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-list">
+                                        <h3>პარკინგი</h3>
+                                        <ul>
+                                            <li>
+                                                <label for="Sale"><input type="checkbox" id="Sale"
+                                                        class="filter" />ავტოფარეხი</label>
+                                            </li>
+                                            <li>
+                                                <label for="Rent"><input type="checkbox" id="Rent"
+                                                        class="filter" />პარკინგის ადგილი</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-list">
+                                        <h3>სათავსო</h3>
+                                        <ul>
+                                            <li>
+                                                <label for="Sale"><input type="checkbox" id="Sale"
+                                                        class="filter" />სარდაფი</label>
+                                            </li>
+                                            <li>
+                                                <label for="Rent"><input type="checkbox" id="Rent"
+                                                        class="filter" />სხვენი</label>
+                                            </li>
+                                            <li>
+                                                <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
+                                                        class="filter" />საკუჭნაო</label>
+                                            </li>
+                                            <li>
+                                                <label for="HotOffer"><input type="checkbox" id="HotOffer"
+                                                        class="filter" />გარე სათავსო</label>
+                                            </li>
+                                            <li>
+                                                <label for="HotOffer"><input type="checkbox" id="HotOffer"
+                                                        class="filter" />საერთო სათავსო</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="btn btn-primary">გაფილტვრა</button>
+                                </form>
 
-                                <div class="filter-list">
-                                    <h3>გათბობა</h3>
-                                    <ul>
-                                        <li>
-                                            <label for="Sale"><input type="checkbox" id="Sale"
-                                                    class="filter" />ცენტრალური გათბობა</label>
-                                        </li>
-                                        <li>
-                                            <label for="Rent"><input type="checkbox" id="Rent"
-                                                    class="filter" />გაზის გამათბობელი</label>
-                                        </li>
-                                        <li>
-                                            <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                    class="filter" />დენის გამათბობელი</label>
-                                        </li>
-                                        <li>
-                                            <label for="HotOffer"><input type="checkbox" id="HotOffer"
-                                                    class="filter" />იატაკის გათბობა</label>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="filter-list">
-                                    <h3>პარკინგი</h3>
-                                    <ul>
-                                        <li>
-                                            <label for="Sale"><input type="checkbox" id="Sale"
-                                                    class="filter" />ავტოფარეხი</label>
-                                        </li>
-                                        <li>
-                                            <label for="Rent"><input type="checkbox" id="Rent"
-                                                    class="filter" />პარკინგის ადგილი</label>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="filter-list">
-                                    <h3>სათავსო</h3>
-                                    <ul>
-                                        <li>
-                                            <label for="Sale"><input type="checkbox" id="Sale"
-                                                    class="filter" />სარდაფი</label>
-                                        </li>
-                                        <li>
-                                            <label for="Rent"><input type="checkbox" id="Rent"
-                                                    class="filter" />სხვენი</label>
-                                        </li>
-                                        <li>
-                                            <label for="OpenHouse"><input type="checkbox" id="OpenHouse"
-                                                    class="filter" />საკუჭნაო</label>
-                                        </li>
-                                        <li>
-                                            <label for="HotOffer"><input type="checkbox" id="HotOffer"
-                                                    class="filter" />გარე სათავსო</label>
-                                        </li>
-                                        <li>
-                                            <label for="HotOffer"><input type="checkbox" id="HotOffer"
-                                                    class="filter" />საერთო სათავსო</label>
-                                        </li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,9 +292,9 @@
                                             </a>
                                             <span class="tag-l curency-changer">$</span>
 
-                                            <span class="fav"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                            <span class="fav"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                                              </svg></span>
+                                            </svg></span>
                                         </div>
                                         <div class="f-cont-f">
                                             <h3>
@@ -346,5 +380,39 @@
                 });
             });
         });
+
+        $('.district').click(function() {
+                $('.district').css('color', 'black');
+                var districtValue = $(this).attr('data');
+                $(this).css('color', 'red');
+                $('#district').val(districtValue);
+                console.log(districtValue)
+            });
+
+            var cityValue = ''; // Initialize cityValue
+
+            $('.city').click(function() {
+                $('.city').css('color', 'black');
+                var dataValue = $(this).attr('data');
+                $(this).attr('data')
+                if (cityValue == dataValue) {
+                    cityValue = '';
+                    $('#city').val('');
+                    $('#district').val('');
+                    $('.district').css('color', 'black');
+                    $(this).siblings('ul').slideToggle('medium');
+                    console.log(cityValue)
+
+                } else {
+                    $(this).css('color', 'red');
+                    cityValue = dataValue;
+                    $('#city').val(dataValue);
+                    $('#district').val('');
+                    $('.district').css('color', 'black');
+                    $('.city').siblings('ul').slideUp('medium');
+                    $(this).siblings('ul').slideToggle('medium');
+                    console.log(cityValue)
+                }
+            });
     </script>
 @stop

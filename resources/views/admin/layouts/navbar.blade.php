@@ -71,6 +71,12 @@
             </a>
         </li>
         <li class="menu-item">
+            <a href="{{route('appartments.index')}}" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="User interface">ბინები</div>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="{{route('developers.index')}}" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="User interface">დეველოპერები</div>

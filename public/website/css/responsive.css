@@ -259,7 +259,9 @@
 
     a.view-all {
         font-size: 19px;
-        color: #ffbe00;
+        color: #273573
+
+;
         width: 100%;
         display: inline-block;
         background: #0c0c0b;
@@ -1325,7 +1327,9 @@ font-size: 36px;
 
     a.view-all {
         font-size: 19px;
-        color: #ffbe00;
+        color: #273573
+
+;
         width: 100%;
         display: inline-block;
         background: #0c0c0b;
@@ -1756,7 +1760,9 @@ font-size: 36px;
     }
     a.view-all {
         font-size: 19px;
-        color: #ffbe00;
+        color: #273573
+
+;
         width: 100%;
         display: inline-block;
         background: #0c0c0b;
@@ -2211,7 +2217,9 @@ font-size: 36px;
 }
 .architact-btn {
     padding: 7px;
-    background: #FFBE00;
+    background: #273573
+
+;
     font-weight: 600;
     border-radius: 5px;
     font-size: 1rem;
@@ -2497,7 +2505,9 @@ width: 50%;
 }
 .architact-btn {
     padding: 7px;
-    background: #FFBE00;
+    background: #273573
+
+;
     font-weight: 600;
     border-radius: 5px;
     font-size: 1rem;

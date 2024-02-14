@@ -5,7 +5,9 @@
 
 .min-f-t h4 {
     margin-bottom: 20px;
-    color: #ffbe00;
+    color: #273573
+
+;
     font-size: 22px;
     font-weight: 500;
 }
@@ -53,7 +55,9 @@
     }
 
         .wi-100-t li span {
-            color: #ffbe00;
+            color: #273573
+
+;
             font-weight: 500;
         }
 
@@ -130,7 +134,9 @@
 }
 
     .footer-three .y-bg {
-        background-color: #ffbe00
+        background-color: #273573
+
+
     }
 
     .footer-three span.left-co-i {
@@ -184,7 +190,9 @@
 .footer-four .footer-cont h4 {
     font-size: 22px;
     font-weight: 500;
-    color: #ffbe00;
+    color: #273573
+
+;
     margin-bottom: 20px;
     position: relative;
     padding-bottom: 22px;
@@ -209,7 +217,9 @@
 }
 
 .orange {
-    background: #ffbe00;
+    background: #273573
+
+;
 }
 
 .back-home {
@@ -232,7 +242,9 @@
     width: 100%;
     padding: 17px;
     color: #fff;
-    background: #ffbe00;
+    background: #273573
+
+;
     margin-bottom: 20px;
 }
 
@@ -241,7 +253,7 @@
     font-weight: 500;
     line-height: 29px;
     margin-bottom: 20px;
-    color: #ffbe00;
+    color: #fff;
 }
 
     .footer-four .footer-cont h4:before {
@@ -249,7 +261,7 @@
         position: absolute;
         width: 50px;
         height: 3px;
-        background: #ffbe00;
+        background: #fff;
         bottom: 0;
     }
 
@@ -263,11 +275,9 @@
     letter-spacing: 0.5px;
 }
 
-    .footer-four .wi-50 li a:hover {
-        color: #ffbe00;
-    }
-
-
+.footer-four .wi-50 li a:hover {
+    color: #273573;
+}
 
 .border-t-b {
     padding: 10px 1px;

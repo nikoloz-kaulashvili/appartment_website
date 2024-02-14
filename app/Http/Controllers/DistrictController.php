@@ -30,7 +30,7 @@ class DistrictController extends Controller
         $district = new District();
         $district->name_ge = $request->name_ge;
         $district->name_en = $request->name_en;
-        $district->city_id = 1;
+        $district->city_id = $request->city_id;
         $district->save();
 
 
@@ -48,7 +48,7 @@ class DistrictController extends Controller
         $district = District::findOrFail($id);
         $district->name_ge = $request->name_ge;
         $district->name_en = $request->name_en;
-        $district->city_id = 1;
+        $district->city_id = $request->city_id;
         $district->update();
 
         return redirect()->route('districts.index')->with('success', 'District updated successfully.');

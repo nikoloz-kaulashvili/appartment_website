@@ -8,6 +8,11 @@
                 <div class="col-md-12">
                     <div class="left-side-detail">
                         <span class="tag-l curency-changer changer">$</span>
+                        <button class="btn btn-primary favorite">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                          </svg>
+                        </button>
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach ($images as $image)
@@ -34,15 +39,11 @@
                             <h3>{{$appartment->name_ge}}</h3>
                             <ul class="img-map-co map-i-con">
                                 <li>
-                                    <img src="website/images/map.png" alt="" class="map-i">
-                                    {{$appartment->city_id}}
-                                </li>
-                                <li>
-                                    <img src="website/images/clock.png" alt="" class="map-i">
+                                    <img src="/website/images/clock.png" alt="" class="map-i">
                                     {{$appartment->created_at}}
                                 </li>
                                 <li>
-                                    <img src="website/images/clock.png" alt="" class="map-i">
+                                    <img src="/website/images/map.png" alt="" class="map-i">
                                     {{$appartment->address_ge}}
                                 </li>
                             </ul>
@@ -50,11 +51,6 @@
                                 <h3 class="price-m price">{{$appartment->price}}</h3>
                                 <h3 class="price-m curency">$</h3>
                             </div>
-                            <button class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                              </svg>
-                            </button>
                         </div>
                         <div class="min-details">
                             <h3>დეტალები</h3>
@@ -86,7 +82,7 @@
                             {{$appartment->description_ge}}
                         </div>
                         <div class="min-details">
-                            <h3>Features</h3>
+                            <h3>დამატებითი პარამეტრები</h3>
                             <ul class="min-feature">
                                 <ul class="property-list-f list-unstyled">
                                     <li><b>აივანი:</b> {{ $appartment->balcony == 1 ? "+" : "-" }}</li>
@@ -109,6 +105,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container map-container">
+            {!! $appartment->map !!}
         </div>
     </section>
     <!--Ser-details-End-->

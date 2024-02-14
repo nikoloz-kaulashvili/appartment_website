@@ -28,13 +28,9 @@
                 
                 @foreach ($developers as $developer)
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <a href="">
-                            <div class="Villa">
+                        <a href="/projects?project_id={{$developer->id}}">
+                            <div class="shadow Villa">
                             <img src="{{$developer->image}}" alt="">
-                            </div>
-                            <div class="villa-t">
-                                <span>01</span>
-                                <h3>{{$developer->name_ge}} - {{$developer->name_en}}</h3>
                             </div>
                         </a>
                     </div>

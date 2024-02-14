@@ -478,3 +478,6 @@ table img{
     height: auto;
     margin-top: 10px;
 }
+.widget_sub_categories .widget_dropdown_categories{
+    display: none !important;
+}

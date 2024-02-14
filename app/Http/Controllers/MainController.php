@@ -36,9 +36,9 @@ class MainController extends Controller
 
     public function appartments(Request $request)
     {
-        $rate = $this->currencyService->convertCurrency();
-        $appartmentsQuery = Appartment::query();
-
+    $rate = $this->currencyService->convertCurrency();
+    $appartmentsQuery = Appartment::query();
+    $cities = City::all();
     if ($request->filled('city')) {
         $appartmentsQuery->where('city_id', $request->input('city'));
     }
@@ -50,10 +50,16 @@ class MainController extends Controller
     if ($request->filled('property_type')) {
         $appartmentsQuery->where('property_type', $request->input('property_type'));
     }
+    if($request->filled('city_id')){
+        $appartmentsQuery->where('city_id', $request->city_id);
+    }
+    if($request->filled('district_id')){
+        $appartmentsQuery->where('district_id', $request->district_id);
+    }
 
     $appartments = $appartmentsQuery->orderBy('created_at', 'desc')->get();
         $image = ProductImage::all();
-        return view('website.components.appartments', compact('appartments', 'image', 'rate'));
+        return view('website.components.appartments', compact('appartments', 'image', 'rate', 'cities'));
     }
     public function showAppartment($id)
     {
@@ -72,9 +78,13 @@ class MainController extends Controller
         return view('website.components.developers', compact('developers'));
     }
 
-    public function projects()
+    public function projects(Request $request)
     {
-        $projects = Project::all();
+        $projects = Project::where('id','!=',null);
+        if($request->project_id){
+            $projects->where('id', $request->project_id);
+        }
+        $projects =  $projects->get();
 
         // Logic for the projects page
         return view('website.components.projects', compact('projects'));

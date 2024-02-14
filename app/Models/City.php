@@ -14,4 +14,9 @@ class City extends Model
     {
         return $this->hasMany(District::class);
     }
+
+    public function appartment()
+    {
+        return $this->belongsTo(Appartment::class);
+    }
 }

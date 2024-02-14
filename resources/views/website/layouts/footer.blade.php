@@ -4,9 +4,9 @@
       <div class="pt-5 row">
         <div class="col-md-4 pr-30">
           <div class="footer-cont footer-logo">
-            <span class="logo-f mar-top mb-30">
+            <span class="logo-f logo mar-top mb-30">
               <a href="#">
-                <img src="/website/images/footer-logo.png" alt="" />
+                <img src="/website/images/logo.png" alt="" />
               </a>
             </span>
             <p>

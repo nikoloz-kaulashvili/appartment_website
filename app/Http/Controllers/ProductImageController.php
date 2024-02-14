@@ -57,7 +57,7 @@ class ProductImageController extends Controller
 
     // Apply transparency to the watermark
     imagealphablending($resizedWatermark, false);
-    $transparency = 45; // 40% opacity (0.4 * 255)
+    $transparency = 20; // 40% opacity (0.4 * 255)
     imagefilter($resizedWatermark, IMG_FILTER_COLORIZE, 0, 0, 0, $transparency);
 
     // Calculate position
