@@ -818,7 +818,7 @@ Preloader CSS End
     .min-pro-box:before {
         content: "";
         position: absolute;
-        background-image: url(..//website/images/be-line.png);
+        background-image: url(/website/images/be-line.png);
         left: 0;
         right: 0;
         bottom: 0;
@@ -925,7 +925,7 @@ ul.min-f-img {
     .pop-pro:after {
         content: "";
         position: absolute;
-        background-image: url(..//website/images/line-af.png);
+        background-image: url(/website/images/line-af.png);
         width: 42%;
         left: 0;
         background-size: cover;
@@ -2558,7 +2558,7 @@ span.pl-5gallery {
     .bg-agent::after {
         content: "";
         position: absolute;
-        background-image: url(..//website/images/be-line.png);
+        background-image: url(/website/images/be-line.png);
         left: 0;
         right: 0;
         bottom: 0;
@@ -2680,7 +2680,7 @@ span.pl-5gallery {
     .agents-details:after {
         content: "";
         position: absolute;
-        background-image: url(..//website/images/line-af.png);
+        background-image: url(/website/images/line-af.png);
         width: 26.5%;
         left: 0;
         background-size: cover;
@@ -3420,7 +3420,7 @@ label.check-b {
     .login-page-bg:after {
         content: "";
         position: absolute;
-        background-image: url(..//website/images/line-af.png);
+        background-image: url(/website/images/line-af.png);
         width: 26.5%;
         right: 0;
         background-size: cover;
@@ -3829,7 +3829,6 @@ img.cl-b {
     position: absolute;
     top: 0;
     left: 0;
-    background: url(..//website/images/Transparency.png);
     bottom: 0;
     width: 100%;
     background-repeat: no-repeat;
@@ -4160,7 +4159,6 @@ padding: 7px;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: url(..//website/images/Transparency.png);
     background-repeat: no-repeat;
     z-index: -99;
 }

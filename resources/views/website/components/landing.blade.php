@@ -235,7 +235,7 @@
                                                 alt="" class="img-fluid" />
                                         </a>
                                         <span class="tag-l curency-changer">$</span>
-                                        <span class="fav"><svg xmlns="http://www.w3.org/2000/svg" width="30"
+                                        <span class="fav add-wishlist" data="{{$appartment->id}}"><svg xmlns="http://www.w3.org/2000/svg" width="30"
                                                 height="30" fill="currentColor" class="bi bi-heart"
                                                 viewBox="0 0 16 16">
                                                 <path

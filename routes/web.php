@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppartmentController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductImageController;
+
 
 
 /*
@@ -33,6 +35,9 @@ Route::get('/developers', [MainController::class, 'developers'])->name('main.dev
 Route::get('/projects', [MainController::class, 'projects'])->name('main.projects');
 Route::get('/upload', [MainController::class, 'upload'])->name('main.upload');
 Route::get('/services', [MainController::class, 'services'])->name('main.services');
+Route::get('/add-to-cache', [WishlistController::class, 'addToCache'])->name('wishlist.addToCache');
+Route::get('/delete-from-cache/{id}', [WishlistController::class, 'deleteFromCache'])->name('wishlist.deleteFromCache');
+Route::get('/wishlist', [WishlistController::class, 'index']);
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {

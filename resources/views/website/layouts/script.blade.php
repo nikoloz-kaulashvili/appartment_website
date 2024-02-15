@@ -1,13 +1,3 @@
-<script src="/website/js/jquery-3.6.0.min.js"></script>
-<script src="/website/js/bootstrap.min.js"></script>
-<script src="/website/js/wow-animate.min.js"></script>
-<script src="/website/js/isotope.pkgd.min.js"></script>
-<script src="/website/js/jquery.magnific-popup.min.js"></script>
-<script src="/website/js/owl.carousel.min.js"></script>
-<script src="/website/js/select2.min.js"></script>
-<script src="/website/js/swiper.min.js"></script>
-<script src="/website/js/main.js"></script>
-
 <script>
     var x = document.getElementById("resultsubscription");
     var currentLocation1 = window.location;
@@ -27,4 +17,29 @@
         $(".seccess1").hide();
         $(".error1").hide();
     }
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.add-wishlist').click(function(){
+            var appartmentId = $(this).attr('data'); // Your product ID
+            var token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                type: 'get',
+                url: '/add-to-cache',
+                data: {
+                    appartment_id: appartmentId,
+                    _token: token // Include the CSRF token
+                },
+                success: function(response) {
+                    console.log(response);
+                    Swal.fire(response['message']);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error adding product to cache');
+                    Swal.fire("პროდუქტი ვერ დაემატა სურვილების სიას");
+                }
+            });
+        });
+    });
 </script>

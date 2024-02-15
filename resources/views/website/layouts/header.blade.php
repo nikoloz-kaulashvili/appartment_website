@@ -54,7 +54,6 @@
                                 <div class="cont-con">
                                     <a href="login.html">Login </a>/
                                     <a href="login.html">Register</a>
-
                                 </div>
                             </li>
                         </ul>
