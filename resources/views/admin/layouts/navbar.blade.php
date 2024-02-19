@@ -88,6 +88,12 @@
                 <div data-i18n="User interface">პროექტები</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('contact.index')}}" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="User interface">კონტაქტები</div>
+            </a>
+        </li>
         <br>
         <li class="menu-item active">
             <a class="menu-link">

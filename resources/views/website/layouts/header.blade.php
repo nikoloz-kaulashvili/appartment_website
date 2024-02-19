@@ -47,7 +47,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3">
+                {{-- <div class="col-md-3">
                     <div class="mail-send fl-right">
                         <ul>
                             <li>
@@ -58,7 +58,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

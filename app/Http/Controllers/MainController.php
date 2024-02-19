@@ -34,21 +34,30 @@ class MainController extends Controller
         return view('website.components.about');
     }
 
+    public function projectShow($id)
+    {
+         // Logic for the developers page
+         $project = Project::findOrFail($id);
+ 
+         return view('website.components.project', compact('project'));
+    }
+
+
     public function appartments(Request $request)
     {
     $rate = $this->currencyService->convertCurrency();
     $appartmentsQuery = Appartment::query();
     $cities = City::all();
-    if ($request->filled('city')) {
-        $appartmentsQuery->where('city_id', $request->input('city'));
-    }
+
 
     if ($request->filled('agreement_type')) {
-        $appartmentsQuery->where('agreement_type', $request->input('agreement_type'));
+        $appartmentsQuery->wherein('agreement_type', $request->input('agreement_type'));
     }
-
     if ($request->filled('property_type')) {
-        $appartmentsQuery->where('property_type', $request->input('property_type'));
+        $appartmentsQuery->wherein('property_type', $request->input('property_type'));
+    }
+    if ($request->filled('repair')) {
+        $appartmentsQuery->where('repair', $request->input('repair'));
     }
     if($request->filled('city_id')){
         $appartmentsQuery->where('city_id', $request->city_id);
@@ -57,9 +66,73 @@ class MainController extends Controller
         $appartmentsQuery->where('district_id', $request->district_id);
     }
 
+    if($request->filled('start_price')){
+        $appartmentsQuery->where('price','>',$request->start_price);
+    }
+    if($request->filled('end_price')){
+        $appartmentsQuery->where('price','<', $request->end_price);
+    }
+
+    if($request->filled('bedroom')){
+        $appartmentsQuery->where('bedroom', $request->bedroom);
+    }
+    if($request->filled('bathroom')){
+        $appartmentsQuery->where('bathroom', $request->bathroom);
+    }
+
+    if ($request->filled('heating')) {
+        $appartmentsQuery->wherein('heating', $request->input('heating'));
+    }
+
+    if ($request->filled('storage')) {
+        $appartmentsQuery->wherein('storage', $request->input('storage'));
+    }
+
+    if ($request->filled('parking')) {
+        $appartmentsQuery->wherein('parking', $request->input('parking'));
+    }
+
+    if($request->filled('balcony')){
+        $appartmentsQuery->where('balcony', $request->balcony);
+    }
+    if($request->filled('porch')){
+        $appartmentsQuery->where('porch', $request->porch);
+    }
+    if($request->filled('loggia')){
+        $appartmentsQuery->where('loggia', $request->loggia);
+    }
+    if($request->filled('natural_gas')){
+        $appartmentsQuery->where('natural_gas', $request->natural_gas);
+    }
+    if($request->filled('internet')){
+        $appartmentsQuery->where('internet', $request->internet);
+    }
+    if($request->filled('fireplace')){
+        $appartmentsQuery->where('fireplace', $request->fireplace);
+    }
+    if($request->filled('furniture')){
+        $appartmentsQuery->where('furniture', $request->furniture);
+    }
+    if($request->filled('passenger_elevator')){
+        $appartmentsQuery->where('passenger_elevator', $request->passenger_elevator);
+    }
+    if($request->filled('freight_elevator')){
+        $appartmentsQuery->where('freight_elevator', $request->freight_elevator);
+    }
+    if($request->filled('telephone')){
+        $appartmentsQuery->where('telephone', $request->telephone);
+    }
+    if($request->filled('tv')){
+        $appartmentsQuery->where('tv', $request->tv);
+    }
+    if($request->filled('conditioner')){
+        $appartmentsQuery->where('conditioner', $request->conditioner);
+    }
     $appartments = $appartmentsQuery->orderBy('created_at', 'desc')->get();
-        $image = ProductImage::all();
-        return view('website.components.appartments', compact('appartments', 'image', 'rate', 'cities'));
+    $image = ProductImage::all();
+    $req =  $request->all();
+
+    return view('website.components.appartments', compact('req', 'appartments', 'image', 'rate', 'cities'));
     }
     public function showAppartment($id)
     {

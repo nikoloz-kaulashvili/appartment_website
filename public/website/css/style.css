@@ -1,6 +1,7 @@
 
 
-@import url('https://free.bboxtype.com/embedfonts/?family=FiraGO:200,300,400,500,600,700,900');
+
+@import url('https://free.bboxtype.com/embedfonts/?family=FiraGO:100,200,300,400,500,700,900');
 
 body {
     font-family: 'FiraGO', sans-serif;
@@ -14,7 +15,9 @@ body {
 /* ====================== [ Start Cursor Style ] ====================== */
 
 
-
+*{
+    font-family: 'FiraGO', sans-serif !important;
+}
 /* ====================== [ End Cursor Style ] ====================== */
 p,
 li,
@@ -23,7 +26,7 @@ button,
 span,
 h5,
 h6 {
-    font-family: 'FiraGO', sans-serif;
+    font-family: 'FiraGO', sans-serif !important;
 
 
 }
@@ -4885,4 +4888,12 @@ body{
 }
 .logo img{
     width: 300px;
+}
+.cities-head{
+    font-size: 25px;
+    background: #273573;
+    padding: 15px;
+    width: max-content;
+    border-radius: 20px;
+    color: #fff;
 }

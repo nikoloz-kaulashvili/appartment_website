@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\FavoriteController;
@@ -33,11 +34,17 @@ Route::get('/appartments', [MainController::class, 'appartments'])->name('main.a
 Route::get('/appartment/{id}', [MainController::class, 'showAppartment'])->name('main.show.appartment');
 Route::get('/developers', [MainController::class, 'developers'])->name('main.developers');
 Route::get('/projects', [MainController::class, 'projects'])->name('main.projects');
+Route::get('/project/{id}', [MainController::class, 'projectShow'])->name('show.projects');
 Route::get('/upload', [MainController::class, 'upload'])->name('main.upload');
 Route::get('/services', [MainController::class, 'services'])->name('main.services');
 Route::get('/add-to-cache', [WishlistController::class, 'addToCache'])->name('wishlist.addToCache');
 Route::get('/delete-from-cache/{id}', [WishlistController::class, 'deleteFromCache'])->name('wishlist.deleteFromCache');
 Route::get('/wishlist', [WishlistController::class, 'index']);
+
+
+Route::post('/contact-store', [ContactController::class, 'store'])->name('contact.index');
+
+
 
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
@@ -84,6 +91,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::post('/admin/product_images/{id}', [ProductImageController::class, 'store'])->name('product_images.store');
     Route::delete('/admin/delete/product_images', [ProductImageController::class, 'destroy'])->name('product_images.destroy');
+
+    // contact
+    Route::get('admin/contacts', [ContactController::class, 'index'])->name('contact.index');
+
 
 
 
