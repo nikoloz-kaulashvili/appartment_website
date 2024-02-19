@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="table_desc wishlist">
-                                    <div class="cart_page">
+                                    <div class="cart_page wish-div">
                                         <table>
                                             <thead>
                                                 <tr>
@@ -25,7 +25,7 @@
                                                         <td class="appartment_remove"> 
                                                             <button class="btn btn-primary delete-wishlist"  data-appartment-id="{{$appartment->id}}">X</button>
                                                         </td>
-                                                        <td class="appartment_thumb"><a href="#"><img src="{{$appartment->image}}" alt=""></a></td>
+                                                        <td class="appartment_thumb"><a href="#"><img class="wishlist-img" src="{{$images->where('product_id',$appartment->id)->pluck('image_path')->first()}}" alt=""></a></td>
                                                         <td class="appartment_name"><a href="#">{{$appartment->name_ge}}</a></td>
                                                         <td class="appartment-price">{{$appartment->price}} $</td>
                                                     </tr>

@@ -4897,3 +4897,23 @@ body{
     border-radius: 20px;
     color: #fff;
 }
+.wishlist-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+.appartment_remove{
+    padding-right: 100px;
+}
+
+.wish-div{
+    width: max-content;
+    margin: auto;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    border: 1px solid black;
+    padding: 50px;
+    border-radius: 30px;
+}

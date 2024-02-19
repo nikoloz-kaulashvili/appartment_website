@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductImage;
 use App\Models\Appartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+
 
 class WishlistController extends Controller
 {
@@ -52,10 +54,13 @@ class WishlistController extends Controller
         // Retrieve the array of product IDs from the cache
         $appartmentIds = Cache::get('appartment_ids', []);
 
+        $images = ProductImage::all();
+
+
         // Query the database to retrieve products based on the product IDs
         $appartments = Appartment::whereIn('id', $appartmentIds)->get();
 
-        return view('website.components.wishlist', ['appartments' => $appartments]);
+        return view('website.components.wishlist', ['appartments' => $appartments, 'images' => $images]);
     }
 }
 
